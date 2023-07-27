@@ -1,0 +1,3 @@
+Date,Product,SKU,Quantity,Unit Type,Price Per Unit ($),Multiplier,Owner,Repository Slug,Username
+2023-06-01,Codespaces - Linux,Compute - 4 core,1.0279,hour,0.36,1.0,Ashishmehta11123,codespaces-react,Ashishmehta11123
+2023-06-02,Codespaces - Linux,Storage,0.003,gb-month,0.07,1.0,Ashishmehta11123,codespaces-react,Ashishmehta11123

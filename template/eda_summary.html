@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDA Summary</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+       body{
+         background-color:#141416;
+         color:#ded3e6;
+         margin:20px;
+         font-family:Arial,sans-serif;
+         line-height:1.6
+       }
+      /* Heading styles */
+    h1 {
+        /* Gradient text color (yellow to dark yellowish) */
+        background-image: linear-gradient(135deg, #F7DC6F, #F39C12);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        /* Gradient text color (yellow to dark yellowish) */
+        background-image: linear-gradient(135deg, #F7DC6F, #F39C12);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    h4 {
+        /* Gradient text color (yellow to dark yellowish) */
+        
+        
+        color: #E4E2E5 ;
+        font-family: "Verdana", Geneva, sans-serif;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* Table styles */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Image styles */
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px 0;
+    }
+
+    /* Additional summary text styles */
+    p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    /* Add more CSS styles as needed */
+        <!-- Your CSS styles here -->
+    </style>
+</head>
+<body>
+    <h1>EDA Summary</h1>
+    {% for section, info in summary.items() %}
+        <h3>{{ section }}</h3>
+        {% if info is not none and info is string %}
+            {% if 'static/' in info %}
+                {% set image_name = info.split('/')[-1] %}
+                <img src="{{ url_for('static', filename=image_name) }}">
+            {% else %}
+                <h4>{{ info }}</h4>
+            {% endif %}
+        {% elif section in summary_tables %}
+            {{ summary_tables[section] | safe }}
+        {% else %}
+            <h4>{{ info }}</h4>
+        {% endif %}
+        <hr>
+    {% endfor %}
+</body>
+</html>
